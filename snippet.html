@@ -71,7 +71,7 @@
         http.open("GET", "getsnippets.cgi", true);
         http.responseType = 'json';
         http.onreadystatechange = function() {
-            if(http.readyState == 4 && http.status == 200) {
+            if (http.readyState == 4 && http.status == 200) {
                 buildListing(http.response);
             }
         }
