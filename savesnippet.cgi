@@ -21,4 +21,5 @@ f = open(os.path.join("snippets", filename), "w")
 f.write(snippet)
 f.close()
 
-json.dump(filename, sys.stdout)
+json.dump([filename], sys.stdout)
+    

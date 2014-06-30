@@ -50,10 +50,13 @@
         
         var http = new XMLHttpRequest();
         http.open("POST", "savesnippet.cgi", true);
+        http.responseType = 'json';
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         http.onreadystatechange = function() {
             if(http.readyState == 4 && http.status == 200) {
-                updateListing();
+                history.pushState({name: http.response[0]},
+                                  null,
+                                  "snippet.html?name=" + http.response[0]);
             }
         }
         http.send(params);
