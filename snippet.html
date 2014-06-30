@@ -41,7 +41,7 @@
     function updateInput(event) {
         if (delayedInputUpdater)
             clearTimeout(delayedInputUpdater);
-        delayedInputUpdater = setTimeout(update, 100);
+        delayedInputUpdater = setTimeout(updatePreview, 100);
     }
 
     function save() {
