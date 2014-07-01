@@ -50,7 +50,8 @@ textarea {
     list-style-type: none;
     -webkit-column-width: 15em;
     -moz-column-width: 15em;
-    max-height: 4em;
+    height: 6em;
+    overflow-x: scroll;
 }
 
 #listing > li > span {
