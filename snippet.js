@@ -49,6 +49,7 @@ function save() {
             history.pushState({name: http.response[0]},
                               null,
                               "snippet.html?name=" + http.response[0]);
+            updateListing();
         }
     };
     http.send(params);
