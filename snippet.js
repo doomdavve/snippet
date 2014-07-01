@@ -89,7 +89,7 @@ function setup() {
         };
         http.send();
     }
+    updatePreview();
 }
 
 setup();
-updatePreview();
