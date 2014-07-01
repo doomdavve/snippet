@@ -46,8 +46,7 @@ function save() {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
-            history.pushState({name: http.response[0]},
-                              null,
+            history.pushState(null, null,
                               "snippet.html?name=" + http.response[0]);
             updateListing();
         }
@@ -74,23 +73,30 @@ function updateListing() {
     http.send();
 }
 
+function load(name) {
+    var http = new XMLHttpRequest();
+    http.open("GET", "snippet.cgi?name=" + name, true);
+    http.responseType = 'text';
+    http.onreadystatechange = function() {
+        if(http.readyState == 4 && http.status == 200) {
+            input.value = http.responseText;
+            updatePreview();
+        }
+    };
+    http.send();
+}
+
 function setup() {
     updateListing();
-
     var initial = getParameterByName('name');
     if (initial) {
-        var http = new XMLHttpRequest();
-        http.open("GET", "snippet.cgi?name=" + initial, true);
-        http.responseType = 'text';
-        http.onreadystatechange = function() {
-            if(http.readyState == 4 && http.status == 200) {
-                input.value = http.responseText;
-                updatePreview();
-            }
-        };
-        http.send();
+        load(initial);
     }
     updatePreview();
 }
 
 setup();
+
+window.addEventListener("popstate", function(e) {
+    setup();
+});
