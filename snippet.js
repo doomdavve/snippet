@@ -28,7 +28,6 @@ function updatePreview() {
         preview.contentWindow.document.open();
         preview.contentWindow.document.write(input.value);
         preview.contentWindow.document.close();
-        saveButton.classList.remove('inactive');
     }
 }
 
@@ -36,6 +35,7 @@ function updateInput(event) {
     if (delayedInputUpdater)
         clearTimeout(delayedInputUpdater);
     delayedInputUpdater = setTimeout(updatePreview, 100);
+    saveButton.classList.remove('inactive');
 }
 
 function save() {
@@ -48,10 +48,8 @@ function save() {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
-            history.pushState(null, null,
-                              "snippet.html?name=" + http.response[0]);
+            load(http.response[0]);
             updateListing();
-            saveButton.classList.add('inactive');
         }
     };
     http.send(params);
@@ -77,6 +75,8 @@ function updateListing() {
 }
 
 function load(name) {
+    history.pushState(null, null,
+                      "snippet.html?name=" + name);
     var http = new XMLHttpRequest();
     http.open("GET", "snippet.cgi?name=" + name, true);
     http.responseType = 'text';
