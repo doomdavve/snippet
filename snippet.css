@@ -47,5 +47,21 @@ textarea {
 }
 
 #listing {
+    list-style-type: none;
+    -webkit-column-width: 15em;
+    -moz-column-width: 15em;
+    max-height: 4em;
+}
 
+#listing > li > span {
+    font-size: smaller;
+    margin-left: 0.5em;
+}
+
+#listing > li > span:before {
+    content: "(";
+}
+
+#listing > li > span:after {
+    content: ")";
 }
