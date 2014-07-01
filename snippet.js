@@ -39,7 +39,7 @@ function updateInput(event) {
 function save() {
     var input = document.querySelector('textarea');
     var params = "snippet=" + input.value;
-    
+
     var http = new XMLHttpRequest();
     http.open("POST", "savesnippet.cgi", true);
     http.responseType = 'json';
@@ -50,7 +50,7 @@ function save() {
                               null,
                               "snippet.html?name=" + http.response[0]);
         }
-    }
+    };
     http.send(params);
 }
 
@@ -69,7 +69,7 @@ function updateListing() {
         if (http.readyState == 4 && http.status == 200) {
             buildListing(http.response);
         }
-    }
+    };
     http.send();
 }
 
@@ -86,7 +86,7 @@ function setup() {
                 input.value = http.responseText;
                 updatePreview();
             }
-        }
+        };
         http.send();
     }
 }
