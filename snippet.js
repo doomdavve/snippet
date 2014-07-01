@@ -1,5 +1,6 @@
 var listing = document.querySelector('#listing');
 var input = document.querySelector('textarea');
+var saveButton = document.querySelector('#save');
 var delayedInputUpdater = 0;
 var lastString = '';
 var preview = document.querySelector('iframe');
@@ -27,6 +28,7 @@ function updatePreview() {
         preview.contentWindow.document.open();
         preview.contentWindow.document.write(input.value);
         preview.contentWindow.document.close();
+        saveButton.classList.remove('inactive');
     }
 }
 
@@ -49,6 +51,7 @@ function save() {
             history.pushState(null, null,
                               "snippet.html?name=" + http.response[0]);
             updateListing();
+            saveButton.classList.add('inactive');
         }
     };
     http.send(params);
@@ -81,6 +84,7 @@ function load(name) {
         if(http.readyState == 4 && http.status == 200) {
             input.value = http.responseText;
             updatePreview();
+            saveButton.classList.add('inactive');
         }
     };
     http.send();

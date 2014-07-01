@@ -39,6 +39,13 @@ textarea {
     box-shadow: 1px 1px 2px hsla(0,0%,0%,0.3);
 }
 
+#panel a.inactive {
+    background-image:
+	linear-gradient(to bottom, hsl(0,0%,40%), hsl(0,0%,30%));
+    pointer-events: none;
+    cursor: default;
+}
+
 #panel > a:active {
     position:relative;
     top: 1px;
