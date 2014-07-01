@@ -9,12 +9,12 @@ function buildListing(snippetnames) {
     listing.innerHTML = "";
     snippetnames.forEach(function(snippetname) {
         var a = document.createElement("a");
+
         a.textContent = snippetname[0];
-        a.href = "snippet.html?name=" + snippetname[0];
+        a.href = "javascript:load('" + snippetname[0] + "');";
 
         var span = document.createElement("span");
         span.textContent = snippetname[1];
-
 
         var li = document.createElement("li");
         li.appendChild(a);
