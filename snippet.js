@@ -38,7 +38,7 @@ function updateInput(event) {
 
 function save() {
     var input = document.querySelector('textarea');
-    var params = "snippet=" + input.value;
+    var params = "snippet=" + encodeURIComponent(input.value);
 
     var http = new XMLHttpRequest();
     http.open("POST", "savesnippet.cgi", true);
