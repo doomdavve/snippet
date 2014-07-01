@@ -1,5 +1,4 @@
 var dirlisting = document.querySelector('#dirlisting');
-var submit = document.querySelector('input');
 var input = document.querySelector('textarea');
 var delayedInputUpdater = 0;
 var lastString = '';
