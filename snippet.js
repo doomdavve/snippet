@@ -1,18 +1,24 @@
-var dirlisting = document.querySelector('#dirlisting');
+var listing = document.querySelector('#listing');
 var input = document.querySelector('textarea');
 var delayedInputUpdater = 0;
 var lastString = '';
 var preview = document.querySelector('iframe');
 
 function buildListing(snippetnames) {
-    dirlisting.innerHTML = "";
+    listing.innerHTML = "";
     snippetnames.forEach(function(snippetname) {
         var a = document.createElement("a");
-        a.textContent = snippetname;
+        a.textContent = snippetname[0];
         a.href = "snippet.html?name=" + snippetname[0];
+
+        var span = document.createElement("span");
+        span.textContent = snippetname[1];
+
+
         var li = document.createElement("li");
         li.appendChild(a);
-        dirlisting.appendChild(li);
+        li.appendChild(span);
+        listing.appendChild(li);
     });
 }
 
