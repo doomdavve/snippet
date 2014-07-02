@@ -1,5 +1,5 @@
 var listing = document.querySelector('#listing');
-var input = document.querySelector('textarea');
+var editor;
 var saveButton = document.querySelector('#save');
 var delayedInputUpdater = 0;
 var lastString = '';
@@ -24,9 +24,9 @@ function buildListing(snippetnames) {
 }
 
 function updatePreview() {
-    if (lastString != input.value) {
+    if (lastString != editor.getValue()) {
         preview.contentWindow.document.open();
-        preview.contentWindow.document.write(input.value);
+        preview.contentWindow.document.write(editor.getValue());
         preview.contentWindow.document.close();
     }
 }
@@ -39,8 +39,7 @@ function updateInput(event) {
 }
 
 function save() {
-    var input = document.querySelector('textarea');
-    var params = "snippet=" + encodeURIComponent(input.value);
+    var params = "snippet=" + encodeURIComponent(editor.getValue());
 
     var http = new XMLHttpRequest();
     http.open("POST", "savesnippet.cgi", true);
@@ -82,7 +81,7 @@ function load(name) {
     http.responseType = 'text';
     http.onreadystatechange = function() {
         if(http.readyState == 4 && http.status == 200) {
-            input.value = http.responseText;
+            editor.setValue(http.responseText);
             updatePreview();
             saveButton.classList.add('inactive');
         }
@@ -91,6 +90,13 @@ function load(name) {
 }
 
 function setup() {
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.getSession().setMode("ace/mode/html");
+    editor.getSession().on('change', function(e) {
+        updateInput(e);
+    });
+
     updateListing();
     var initial = getParameterByName('name');
     if (initial) {

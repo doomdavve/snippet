@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="snippet.css" />
 <link rel="icon" type="image/x-icon" href="favicon.ico" />
 <div id="panel"><a id="save" href="javascript:save()">Save</a></div>
-<textarea oninput="updateInput(event)" onkeydown="updateInput(event)">
-<!DOCTYPE html>
-...
-</textarea>
+<pre id="editor">
+</pre>
+
+<script src="ace-builds/src-noconflict/ace.js"></script>
 <div id="listing"></div>
 <div id="log"></div>
 <iframe id="preview"></iframe>
