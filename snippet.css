@@ -58,6 +58,7 @@ textarea {
     list-style-type: none;
     -webkit-column-width: 15em;
     -moz-column-width: 15em;
+    column-width: 15em;
     height: 6em;
     overflow-x: scroll;
 }
