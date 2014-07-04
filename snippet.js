@@ -93,7 +93,6 @@ function setup() {
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/github");
     editor.getSession().setMode("ace/mode/html");
-    editor.setKeyboardHandler("ace/keyboard/emacs");
     editor.getSession().on('change', function(e) {
         updateInput(e);
     });
